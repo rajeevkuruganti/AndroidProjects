@@ -152,6 +152,8 @@ public class OMGActivity extends AppCompatActivity implements View.OnClickListen
         //System.out.println (" the name"+parent.getItemAtPosition(position).toString());
 		//w tItemView = (TextView) v.findViewById(R.id.textView);
 		t1.setPaintFlags(t1.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+		//mainListView.findViewById(id);
+		String x = mToDoList.get(id);
         t1.setText(parent.getItemAtPosition(position).toString());
     }
 }
