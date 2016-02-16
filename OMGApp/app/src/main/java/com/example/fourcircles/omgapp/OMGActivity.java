@@ -25,12 +25,10 @@ public class OMGActivity extends AppCompatActivity implements View.OnClickListen
     Button myFirstBtn;
     ListView mainListView;
     ArrayAdapter mArrayAdapter;
-    ArrayList mNameList = new ArrayList();
+    ArrayList mToDoList = new ArrayList();
     private static final String PREFS = "prefs";
     private static final String PREF_NAME = "name";
     SharedPreferences mSharedPreferences;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,23 +46,15 @@ public class OMGActivity extends AppCompatActivity implements View.OnClickListen
         // Create an ArrayAdapter for the ListView
         mArrayAdapter = new ArrayAdapter(this,
                 android.R.layout.simple_list_item_1,
-                mNameList);
+                mToDoList);
         mainListView.setOnItemClickListener(this);
 
 // Set the ListView to use the ArrayAdapter
         mainListView.setAdapter(mArrayAdapter);
+        // long focus on the item will delete the item as Done.
+        setupListViewListener();
 //        t1.setText("setting in Java");
-        displayWelcome();
 
-
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
     }
 
     private void displayWelcome() {
@@ -133,14 +123,31 @@ public class OMGActivity extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         //t1.setText("Button preseeed.. l");
         myFirstBtn.setText("Add");
-        mNameList.add(t1.getText().toString());
+        mToDoList.add(t1.getText().toString());
+        //System.out.println("mToDoList.size() = "+mToDoList.size());
         mArrayAdapter.notifyDataSetChanged();
 //        myFirstBtn.setActivated(false);
     }
+    // Attaches a long click listener to the listview
+    private void setupListViewListener() {
+        mainListView.setOnItemLongClickListener(
+                new AdapterView.OnItemLongClickListener() {
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> adapter,
+                                                   View item, int pos, long id) {
+                        // Remove the item within array at position
+                        mToDoList.remove(pos);
+                        // Refresh the adapter
+                        mArrayAdapter.notifyDataSetChanged();
+                        // Return true consumes the long click event (marks it handled)
+                        return true;
+                    }
 
+                });
+    }
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        System.out.println (" the name"+parent.getItemAtPosition(position).toString());
+        //System.out.println (" the name"+parent.getItemAtPosition(position).toString());
 
         t1.setText(parent.getItemAtPosition(position).toString());
     }

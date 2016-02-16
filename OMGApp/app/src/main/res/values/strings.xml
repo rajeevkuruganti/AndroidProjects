@@ -3,6 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="action_sharing">Sharing</string>
     <string name="addButtonText">Add</string>
-    <string name="defaultInput">ToDo</string>
+    <string name="clearButtonText">Clear</string>
+    <string name="defaultInput">Task</string>
     <string name="hellow">this is from strings.xml HELLO</string>
 </resources>
