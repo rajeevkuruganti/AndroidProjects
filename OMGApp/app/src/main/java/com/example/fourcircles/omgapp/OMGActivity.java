@@ -3,6 +3,7 @@ package com.example.fourcircles.omgapp;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -131,16 +132,17 @@ public class OMGActivity extends AppCompatActivity implements View.OnClickListen
     // Attaches a long click listener to the listview
     private void setupListViewListener() {
         mainListView.setOnItemLongClickListener(
-                new AdapterView.OnItemLongClickListener() {
-                    @Override
-                    public boolean onItemLongClick(AdapterView<?> adapter,
-                                                   View item, int pos, long id) {
-                        // Remove the item within array at position
-                        mToDoList.remove(pos);
-                        // Refresh the adapter
-                        mArrayAdapter.notifyDataSetChanged();
-                        // Return true consumes the long click event (marks it handled)
-                        return true;
+				new AdapterView.OnItemLongClickListener() {
+					@Override
+					public boolean onItemLongClick(AdapterView<?> adapter,
+												   View item, int pos, long id) {
+						// Remove the item within array at position
+						//        mToDoList.remove(pos);
+
+						// Refresh the adapter
+						mArrayAdapter.notifyDataSetChanged();
+						// Return true consumes the long click event (marks it handled)
+						return true;
                     }
 
                 });
@@ -148,7 +150,8 @@ public class OMGActivity extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         //System.out.println (" the name"+parent.getItemAtPosition(position).toString());
-
+		//w tItemView = (TextView) v.findViewById(R.id.textView);
+		t1.setPaintFlags(t1.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         t1.setText(parent.getItemAtPosition(position).toString());
     }
 }
