@@ -1,4 +1,4 @@
-package com.example.fourcircles.omgapp;
+package com.fourcircles.todolist;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
