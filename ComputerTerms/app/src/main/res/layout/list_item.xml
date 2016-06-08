@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2016. This application and all code is copyright of 4 Circles LLC, USA.
+  -->
+
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+          android:id="@+id/label"
+          android:layout_width="fill_parent"
+          android:layout_height="fill_parent"
+          android:padding="10dip"
+          android:textSize="16dip"
+          android:textStyle="bold" >
+</TextView>
