@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2016. This application and all code is copyright of 4 Circles LLC, USA.
+  -->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/appTitle"
+        android:textStyle="bold"
+        android:text="Indian Term - Meaning"
+        android:textColor="@android:color/holo_blue_bright"
+        android:textSize="22dp"
+        android:layout_weight="0.10"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_toEndOf="@+id/appTitle"
+        android:id="@+id/termText"
+        android:layout_weight="0.20"
+
+        android:textSize="20dp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView2"
+        android:textColor="@android:color/holo_orange_light"
+        android:layout_weight="0.66"
+        android:layout_toEndOf="@+id/termText"
+        android:textSize="18dp"
+        android:textStyle="bold|italic"
+        android:textAlignment="textStart"/>
+</LinearLayout>
