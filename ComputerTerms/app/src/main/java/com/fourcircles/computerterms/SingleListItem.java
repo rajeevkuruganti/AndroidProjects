@@ -20,22 +20,19 @@ public class SingleListItem extends Activity{
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.single_list_item_view);
-System.out.println(("you are i singleListItem Java file."));
+
 		//TextView txtProduct = (TextView) findViewById(R.id.product_label);
 			TextView txtShow = (TextView) findViewById(R.id.textView2);
+		    TextView content = (TextView) findViewById(R.id.termText);
 		Intent i = getIntent();
-		// getting attached intent data
-//        i.getStringExtra("position");
-	//	Integer product = Integer.valueOf(i.getStringExtra("position"));
 
-		System.out.println("position in singlelist item is ----->  "+(i.getStringExtra("key")));
-		txtShow.setText("changing me baby!");
+
 		//String key = ComputerTermsActivity.computerTerms.get(position);
 		String details = ComputerTermsActivity.ITEM_MAPS.get((i.getStringExtra("details")));
 		txtShow.setText(i.getStringExtra("details"));
-		// displaying selected product name
-	//	txtProduct.setText(ComputerTermsActivity.computerTerms.get(1));
-		//txtProduct.setText("Helllo hello ");
+
+		String contentShow = i.getStringExtra("key");
+        content.setText((contentShow));
 
 	}
 }

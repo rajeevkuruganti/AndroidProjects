@@ -9,20 +9,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1">
-    <TextView android:id="@+id/product_label"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:textSize="25dip"
-              android:textStyle="bold"
-              android:padding="10dip"
-              android:textColor="#ffffff"
-              android:layout_weight="0.24"/>
-
     <TextView
-        android:layout_width="190dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text- rajkeev"
+        android:id="@+id/appTitle"
+        android:textStyle="bold"
+        android:text="Computer Terms - Detail Screen"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="22dp"
+        android:layout_weight="0.10"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_toEndOf="@+id/appTitle"
+        android:id="@+id/termText"
+        android:layout_weight="0.20"
+
+        android:textSize="20dp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/textView2"
-        android:layout_weight="0.24"/>
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_weight="0.66"
+        android:layout_toEndOf="@+id/termText"
+        android:textSize="18dp"
+        android:textStyle="bold|italic"
+        android:textAlignment="textStart"/>
 </LinearLayout>
