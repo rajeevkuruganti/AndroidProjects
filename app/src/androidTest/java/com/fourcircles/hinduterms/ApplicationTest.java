@@ -2,7 +2,7 @@
  * Copyright (c) 2016. This application and all code is copyright of 4 Circles LLC, USA.
  */
 
-package com.fourcircles.computerterms;
+package com.fourcircles.hinduterms;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

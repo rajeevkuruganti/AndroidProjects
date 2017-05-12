@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "com.fourcircles.computerterms"
+        applicationId "com.fourcircles.hinduterms"
         minSdkVersion 11
         targetSdkVersion 23
         versionCode 4

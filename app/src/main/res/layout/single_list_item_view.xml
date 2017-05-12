@@ -15,7 +15,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/appTitle"
         android:textStyle="bold"
-        android:text="Indian Term - Meaning"
+        android:text="Hindu Term - Meaning"
         android:textColor="@android:color/holo_blue_bright"
         android:textSize="22dp"
         android:layout_weight="0.10"/>

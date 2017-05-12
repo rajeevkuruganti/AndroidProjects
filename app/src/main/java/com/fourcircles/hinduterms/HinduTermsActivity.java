@@ -2,17 +2,14 @@
  * Copyright (c) 2016. This application and all code is copyright of 4 Circles LLC, USA.
  */
 
-package com.fourcircles.computerterms;
+package com.fourcircles.hinduterms;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,7 +17,6 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,7 +27,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -39,11 +34,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class ComputerTermsActivity extends AppCompatActivity implements Filterable{
+public class HinduTermsActivity extends AppCompatActivity implements Filterable{
 	ListView listView;
 	SearchView searchView;
 	private final String CONTENTFILE ="indianglossary.json";
-	static List<String> computerTerms = new ArrayList<>();
+	static List<String> hinduTerms = new ArrayList<>();
 	static List<String> originalTerms = new ArrayList<>();
 	Filter mFilter = new ItemFilter();
 
@@ -55,11 +50,14 @@ public class ComputerTermsActivity extends AppCompatActivity implements Filterab
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_computer_terms);
+		setContentView(R.layout.activity_hindu_terms);
 		listView = (ListView) findViewById(R.id.listView);
-		listView.setBackgroundColor(Color.RED);
+		listView.setBackgroundColor(Color.WHITE);
 	    searchView =(SearchView) findViewById(R.id.searchView);
-		arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, computerTerms);
+		searchView.setBackgroundColor(Color.BLUE);
+//		arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, hinduTerms);
+		arrayAdapter = new ArrayAdapter(this,R.layout.list_item, hinduTerms);
+
 		listView.setAdapter(arrayAdapter);
 		String listofTerms = loadJSONFromAsset();
 //        System.out.println("here it is --> "+loadJSONFromAsset().toString());
@@ -72,7 +70,7 @@ public class ComputerTermsActivity extends AppCompatActivity implements Filterab
 			@Override
 			public boolean onQueryTextChange(String s) {
 
-				computerTerms.clear();
+				hinduTerms.clear();
 
 				mFilter.filter(s);
 				arrayAdapter.notifyDataSetChanged();
@@ -94,8 +92,8 @@ public class ComputerTermsActivity extends AppCompatActivity implements Filterab
 				Intent i = new Intent( getApplicationContext(), SingleListItem.class);
 				// sending data to new activity
 				i.putExtra("position", position);
-				i.putExtra("key", computerTerms.get(position));
-				i.putExtra("details",ITEM_MAPS.get(computerTerms.get(position)));
+				i.putExtra("key", hinduTerms.get(position));
+				i.putExtra("details",ITEM_MAPS.get(hinduTerms.get(position)));
 				startActivity(i);
 			}
 		});
@@ -104,7 +102,7 @@ public class ComputerTermsActivity extends AppCompatActivity implements Filterab
 
 	public String loadJSONFromAsset() {
 	String json ="";
-	computerTerms.clear();
+	hinduTerms.clear();
     originalTerms.clear();
 	try {
 		InputStream inputStream = getAssets().open(CONTENTFILE);
@@ -117,7 +115,7 @@ public class ComputerTermsActivity extends AppCompatActivity implements Filterab
 			try {
 				if (line!= null){
 					JSONObject singleObj = new JSONObject(line);
-					computerTerms.add ( singleObj.getString("content"));
+					hinduTerms.add ( singleObj.getString("content"));
                 	ITEM_MAPS.put(singleObj.getString("content"),singleObj.getString("details")) ;
 					json +=  line;
 
@@ -131,9 +129,9 @@ public class ComputerTermsActivity extends AppCompatActivity implements Filterab
 				e.printStackTrace();
 			}
 		}
-		originalTerms.addAll(computerTerms);
+		originalTerms.addAll(hinduTerms);
 
-        jsonArray = new JSONArray(computerTerms);
+        jsonArray = new JSONArray(hinduTerms);
 
 		Comparator<String> cmp = new Comparator<String>() {
 			public int compare(String o1, String o2) throws NumberFormatException {
@@ -143,7 +141,7 @@ public class ComputerTermsActivity extends AppCompatActivity implements Filterab
 			}
 		};
       Collections.sort(originalTerms, cmp);
-		Collections.sort(computerTerms, cmp);
+		Collections.sort(hinduTerms, cmp);
 	} catch (IOException ex) {
 		ex.printStackTrace();
 		return null;
@@ -162,13 +160,13 @@ public class ComputerTermsActivity extends AppCompatActivity implements Filterab
 		@Override
 		protected FilterResults performFiltering(CharSequence charSequence) {
 
-			computerTerms.clear();
+			hinduTerms.clear();
 			FilterResults results = new FilterResults();
 			// We implement here the filter logic
 			if (charSequence == null || charSequence.length() == 0) {
 				// No filter implemented we return all the list
-				computerTerms.addAll(originalTerms);
-				results.values = computerTerms;
+				hinduTerms.addAll(originalTerms);
+				results.values = hinduTerms;
 				results.count = originalTerms.size();
 			}
 			else {
@@ -177,11 +175,11 @@ public class ComputerTermsActivity extends AppCompatActivity implements Filterab
 				for (int i =0; i< originalTerms.size();i++){
 					String original = originalTerms.get(i).toLowerCase();
 					if (original.startsWith(charSequence.toString().toLowerCase()))
-						computerTerms.add(originalTerms.get(i));
+						hinduTerms.add(originalTerms.get(i));
 				}
 
-				results.values = computerTerms;
-				results.count = computerTerms.size();
+				results.values = hinduTerms;
+				results.count = hinduTerms.size();
 
 			}
 
@@ -194,7 +192,7 @@ public class ComputerTermsActivity extends AppCompatActivity implements Filterab
 			if (filterResults.count == 0)
 				arrayAdapter.notifyDataSetInvalidated();
 			else {
-			//	computerTerms.addAll( filterResults);
+			//	hinduTerms.addAll( filterResults);
 				arrayAdapter.notifyDataSetChanged();
 			}
 
